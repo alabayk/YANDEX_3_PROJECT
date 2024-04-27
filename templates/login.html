@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block css_enable %}
+<link rel="stylesheet" href="/static/css/register_login.css">
+{% endblock %}
+
+{% block content %}
+<div class="title-line text-center">
+    <h1>Авторизация</h1>
+</div>
+<div class="login-form">
+    <form action="" method="post">
+        {{ form.csrf_token }}
+        <label for="login">Email</label>
+        {% if not message %}
+            {{ form.email(class="form-control") }}
+        {% else %}
+            {{ form.email(class="form-control is-invalid") }}
+        {% endif %}
+
+        <label for="login">Пароль</label>
+        {% if not message %}
+            {{ form.password(class="form-control") }}
+        {% else %}
+            {{ form.password(class="form-control is-invalid") }}
+        {% endif %}
+        <div class="invalid-feedback">
+            {{message}}
+        </div>
+        <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+        <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+    </form>
+</div>
+{% endblock %}

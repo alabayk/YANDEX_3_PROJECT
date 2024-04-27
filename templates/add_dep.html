@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+{% block css_enable %}
+<link rel="stylesheet" href="/static/css/jobs.css">
+{% endblock %}
+
+{% block content %}
+<div class="title-line text-center">
+    {% if title == 'Редактирование департамента'%}
+        {{ title }}
+    {% else %}
+        <h2>Добавить департамент</h2>
+    {% endif %}
+</div>
+{% if not dep %}
+    <div class="add-dep-form">
+    <form method="post" novalidate>
+        {{ form.csrf_token }}
+        <div class="form-group">
+            <label for="title">Название департамента</label>
+            {% if not form.title.errors %}
+                {{ form.title(class="form-control") }}
+            {% else %}
+                {{ form.title(class="form-control is-invalid") }}
+                <div class="invalid-feedback">
+                    Введите название для департамента!
+                </div>
+            {% endif %}
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="chief">Ответственный за департамент</label>
+                {% if not form.chief.errors %}
+                    {{ form.chief(class="form-control") }}
+                {% else %}
+                    {% if error == '1' %}
+                        {{ form.chief(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            Нет пользователя с таким ID!
+                        </div>
+                    {% else %}
+                        {{ form.chief(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            Пожалуйста укажите ответственного
+                        </div>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="form-group col-md-6">
+                <label for="collaborators">Участники</label>
+                {% if not form.members.errors %}
+                    {{ form.members(class="form-control") }}
+                {% else %}
+                    {{ form.members(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        Пожалуйста укажите участников
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            {% if not form.email.errors %}
+                {{ form.email(class="form-control") }}
+            {% else %}
+                {{ form.email(class="form-control is-invalid") }}
+                <div class="invalid-feedback">
+                    Введите Email департамента!
+                </div>
+            {% endif %}
+        </div>
+        <br>
+        {{ form.submit(class="btn btn-primary", type="submit") }}
+    </form>
+</div>
+{% else %}
+    <div class="add-dep-form">
+        <form method="post" novalidate>
+            {{ form.csrf_token }}
+            <div class="form-group">
+                <label for="title">Название департамента</label>
+                {% if not form.title.errors %}
+                    {{ form.title(class="form-control", value=dep.title) }}
+                {% else %}
+                    {{ form.title(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        Введите название для департамента!
+                    </div>
+                {% endif %}
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="chief">Ответственный за департамент</label>
+                    {% if not form.chief.errors %}
+                        {{ form.chief(class="form-control", value=dep.chief) }}
+                    {% else %}
+                        {% if error == '1' %}
+                            {{ form.chief(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                Нет пользователя с таким ID!
+                            </div>
+                        {% else %}
+                            {{ form.chief(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                Пожалуйста укажите ответственного
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="collaborators">Участники</label>
+                    {% if not form.members.errors %}
+                        {{ form.members(class="form-control", value=dep.members) }}
+                    {% else %}
+                        {{ form.members(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            Пожалуйста укажите участников
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                {% if not form.email.errors %}
+                    {{ form.email(class="form-control", value=dep.email) }}
+                {% else %}
+                    {{ form.email(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        Введите Email департамента!
+                    </div>
+                {% endif %}
+            </div>
+            <br>
+            {{ form.submit(class="btn btn-primary", type="submit", value="Редактировать") }}
+        </form>
+    </div>
+{% endif %}
+{% endblock %}

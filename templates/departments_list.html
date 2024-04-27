@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block css_enable %}
+    <link rel="stylesheet" href="static/css/jobs.css">
+{% endblock %}
+
+{% block content %}
+    <div class="add-work text-right">
+        {% if current_user.is_authenticated  %}
+            <a href="/add_dep">
+                <h5>Добавить департамент</h5>
+            </a>
+        {% endif %}
+    </div>
+    <div class="title-line text-center">
+        <h2>Список департаментов</h2>
+    </div>
+    <div class="jobs">
+        {% for department in departments%}
+            <div class="department-num">
+                <h3>Департамент #{{ department.id }}</h3>
+            </div>
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col" class="name">Название</th>
+                        <th scope="col">Лидер</th>
+                        <th scope="col">Исполнители</th>
+                        <th scope="col">Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>{{ department.title }}</th>
+                        <td>{{ us[department.chief] }}</td>
+                        <td>{{ department.members }}</td>
+                        <td>{{ department.email }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            {% if current_user.id == 1 or current_user.id == department.chief %}
+                <div class="row" style="margin: 0 0 30px;">
+                    <a href="/corr_dep/{{ department.id }}"><button type="button" class="btn btn-info" style="margin-right: 10px;">Изменить</button></a>
+                    <a href="/del_dep/{{ department.id }}"><button type="button" class="btn btn-danger">Удалить</button></a>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

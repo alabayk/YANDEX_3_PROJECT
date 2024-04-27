@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400|Sen:700&display=swap&subset=cyrillic" rel="stylesheet">
+    <title>{{ title }}</title>
+    {% block css_enable %}{% endblock %}
+</head>
+
+<body>
+    <header>
+        <div class="user-info position-absolute">
+            {% if current_user.is_authenticated %}
+                <p class="name">{{current_user.name}} {{current_user.surname}}</p>
+                <p class="pos">{{current_user.position}}</p>
+                <p><a href="/logout" class="logout">Выйти из MarsOne</a></p>
+            {% else %}
+                <p class="no-login">Вход не выполнен</p>
+                <p class="login"><a href="/login" class="login">Войти в MarsOne</a></p>
+                <p class="register"><a href="/register" class="register">Регистрация в MarsOne</a></p>
+            {% endif %}
+        </div>
+        <div class="logo">
+            <span class="mars logo-line">Mars</span><span class="one logo-line">One</span>
+        </div>
+        <div class="quote">
+            <span class="quote-line">И на Марсе будут яблони цвести!</span>
+        </div>
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Главная</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/jobs_list">Работы</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/departments_list">Департаменты</a>
+            </li>
+        </ul>
+    </header>
+
+    <main role="main" class="container">
+        {% block content %}{% endblock %}
+    </main>
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</html>

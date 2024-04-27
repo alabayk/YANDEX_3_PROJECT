@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+{% block css_enable %}
+<link rel="stylesheet" href="/static/css/jobs.css">
+{% endblock %}
+
+{% block content %}
+<div class="title-line text-center">
+    {% if title == 'Редактирование работы'%}
+        {{ title }}
+    {% else %}
+        <h2>Добавить работу</h2>
+    {% endif %}
+</div>
+{% if not job %}
+    <div class="add-work-form">
+    <form method="post" novalidate>
+        {{ form.csrf_token }}
+        <div class="form-group">
+            <label for="job">Название работы</label>
+            {% if not form.job.errors %}
+                {{ form.job(class="form-control") }}
+            {% else %}
+                {{ form.job(class="form-control is-invalid") }}
+                <div class="invalid-feedback">
+                    Введите название для работы!
+                </div>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <label for="work_size">Время на работу</label>
+            {% if not form.work_size.errors %}
+                {{ form.work_size(class="form-control") }}
+            {% else %}
+                {{ form.work_size(class="form-control is-invalid") }}
+                <div class="invalid-feedback">
+                    Введите требуемое время!
+                </div>
+            {% endif %}
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="team_leader">Ответственный за работу</label>
+                {% if not form.team_leader.errors %}
+                    {{ form.team_leader(class="form-control") }}
+                {% else %}
+                    {% if error == '1' %}
+                        {{ form.team_leader(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            Нет пользователя с таким ID!
+                        </div>
+                    {% else %}
+                        {{ form.team_leader(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            Пожалуйста укажите ответственного
+                        </div>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="form-group col-md-6">
+                <label for="collaborators">Исполнители</label>
+                {% if not form.collaborators.errors %}
+                    {{ form.collaborators(class="form-control") }}
+                {% else %}
+                    {{ form.collaborators(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        Пожалуйста укажите исполнителей
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="form-check">
+            {{ form.is_finished(class="form-check-input") }}
+            <label for="is_finished" class="form-check-label">Работа завершена</label>
+        </div>
+        <br>
+        {{ form.submit(class="btn btn-primary", type="submit") }}
+    </form>
+</div>
+{% else %}
+    <div class="add-work-form">
+        <form method="post" novalidate>
+            {{ form.csrf_token }}
+            <div class="form-group">
+                <label for="job">Название работы</label>
+                {% if not form.job.errors %}
+                    {{ form.job(class="form-control", value=job.job) }}
+                {% else %}
+                    {{ form.job(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        Введите название для работы!
+                    </div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="work_size">Время на работу</label>
+                {% if not form.work_size.errors %}
+                    {{ form.work_size(class="form-control", value=job.work_size) }}
+                {% else %}
+                    {{ form.work_size(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        Введите требуемое время!
+                    </div>
+                {% endif %}
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="team_leader">Ответственный за работу</label>
+                    {% if not form.team_leader.errors %}
+                        {{ form.team_leader(class="form-control", value=job.team_leader) }}
+                    {% else %}
+                        {% if error == '1' %}
+                            {{ form.team_leader(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                Нет пользователя с таким ID!
+                            </div>
+                        {% else %}
+                            {{ form.team_leader(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                Пожалуйста укажите ответственного
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="collaborators">Исполнители</label>
+                    {% if not form.collaborators.errors %}
+                        {{ form.collaborators(class="form-control", value=job.collaborators) }}
+                    {% else %}
+                        {{ form.collaborators(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            Пожалуйста укажите исполнителей
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="form-check">
+                {{ form.is_finished(class="form-check-input", value=job.is_finished) }}
+                <label for="is_finished" class="form-check-label">Работа завершена</label>
+            </div>
+            <br>
+            {% if not job %}
+                {{ form.submit(class="btn btn-primary", type="submit") }}
+            {% else %}
+                {{ form.submit(class="btn btn-primary", type="submit", value="Редактировать") }}
+            {% endif %}
+        </form>
+    </div>
+{% endif %}
+{% endblock %}

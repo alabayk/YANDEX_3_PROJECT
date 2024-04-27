@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block css_enable %}
+    <link rel="stylesheet" href="static/css/style.css">
+{% endblock %}
+
+{% block content %}
+    <div class="title-line text-center">
+        <h2>Works log</h2>
+    </div>
+    <div class="jobs">
+        {% for job in jobs%}
+            <div class="job-num">
+                <h3>Action #{{ loop.index }}</h3>
+            </div>
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col" class="name">Название</th>
+                        <th scope="col">Лидер</th>
+                        <th scope="col">Продолжительность</th>
+                        <th scope="col">Исполнители</th>
+                        <th scope="col">Закончена</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>{{ job.job }}</th>
+                        <td>{{ us[job.team_leader] }}</td>
+                        <td>{{ job.work_size }}</td>
+                        <td>{{ job.collaborators }}</td>
+                        <td {% if job.is_finished %} class="table-success" {% else %} class="table-danger" {% endif %}>{{ job.is_finished }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        {% endfor %}
+    </div>
+{% endblock %}
