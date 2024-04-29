@@ -1,0 +1,94 @@
+header{
+	background-color: #ececec;
+}
+
+.logo{
+	text-align: center;
+	margin-top: -40px;
+}
+
+.logo-line{
+	font-size: 130px;
+}
+
+.mars{
+	font-family: 'Sen', sans-serif;
+	color: #e77d13;
+}
+
+.one{
+	font-family: 'Montserrat', sans-serif;
+	color: #c14310;
+}
+
+.quote{
+	text-align: center;
+	margin-top: -40px;
+}
+
+.quote-line{
+	font-family: 'Montserrat', sans-serif;
+	color: #c14310;
+	font-size: 32px;
+}
+
+.nav{
+	margin: 0;
+	padding: 0;
+}
+
+.nav-item{
+	font-family: 'Montserrat', sans-serif;
+	font-size: 32px;
+}
+
+.nav-link{
+	color: #91380a;
+}
+
+.nav-link:hover{
+	color: #e77d13;
+}
+
+.user-info{
+	right: 2%;
+	top: 5%;
+	font-family: 'Montserrat', sans-serif;
+    max-width: 250px;
+}
+
+.name, .no-login{
+	font-size: 30px;
+	font-weight: 400;
+	color: #c14310;
+}
+
+.pos{
+	font-size: 25px;
+	margin-top: -25px;
+	color: #c14310;
+}
+
+.logout{
+	font-size: 20px;
+	margin-top: -10px;
+	color: #e77d13;
+}
+
+.logout:hover{
+	color: #91380a;
+}
+
+.login, .register{
+	margin-top: -20px;
+	color: #e77d13;
+	font-size: 18px;
+}
+
+.login:hover, .register:hover{
+    color: #91380a;
+}
+
+main{
+	margin-top: 30px
+}

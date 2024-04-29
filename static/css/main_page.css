@@ -1,0 +1,24 @@
+.mission{
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 32px;
+    margin-top: -20px;
+}
+
+.mo{
+    color: #c14310;
+}
+
+.mission-quote{
+    text-align: right;
+    font-style: italic;
+    font-size: 18px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+.description{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+}

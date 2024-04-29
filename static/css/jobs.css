@@ -1,0 +1,15 @@
+.add-work a{
+    color: #91380a;
+}
+
+.add-work-form{
+     position: relative;
+     width: 60%;
+     left: 20%;
+}
+
+.add-dep-form{
+    position: relative;
+    width: 60%;
+    left: 20%;
+}

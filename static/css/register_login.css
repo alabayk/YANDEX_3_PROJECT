@@ -1,0 +1,11 @@
+.register-form{
+    position: relative;
+    max-width: 70%;
+    left: 15%;
+}
+
+.login-form{
+    position: relative;
+    max-width: 50%;
+    left: 25%;
+}
